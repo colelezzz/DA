@@ -8,7 +8,7 @@ html,
 body {
     height: 100%;
     font-family: Arial, sans-serif;
-    background: linear-gradient(135deg, #ff00ff, #3300ff);
+    background: #711ed0;
     color: #fff;
     line-height: 1.6;
     display: flex;
@@ -48,6 +48,14 @@ nav a {
 }
 
 nav a:hover {
+    color: #981bd1;
+}
+
+nav a.darkMode {
+    color: #ccc;
+}
+
+nav a.darkMode:hover {
     color: #981bd1;
 }
 
@@ -103,6 +111,8 @@ header.darkMode {
 }
 
 h1 {
+    font-family: 'Roboto', sans-serif;
+    font-weight: bolder;
     margin-bottom: 0.5rem;
     text-shadow: 3px 3px 5px rgba(0, 0, 0, 0.8);
     color: #ffffff;
@@ -206,8 +216,7 @@ h1 {
 }
 
 h2 {
-    font-size: 2rem;
-    margin-top: 2%;
+    font-family: 'Roboto', sans-serif;
     text-align: center;
     text-shadow: 4px 4px 6px rgba(255, 255, 255, 0.8);
     color: black;
@@ -294,9 +303,10 @@ h3.darkMode {
 .container {
     display: flex;
     justify-content: center;
-    align-items: center;
     flex-wrap: wrap;
+    padding: 5rem 2rem;
     text-align: center;
+    box-shadow: 0 4px 8px rgb(0, 0, 0);
     background: linear-gradient(135deg, #ff00ff, #3300ff);
 }
 
@@ -311,22 +321,27 @@ h3.darkMode {
     margin-top: 2rem;
 }
 
+.projects {
+    width: 100%;
+    text-align: center;
+}
+
 .projectsContainer {
     display: flex;
-    justify-content: center;
-    align-items: center;
     flex-wrap: wrap;
+    justify-content: center;
+    align-items: center; 
     width: 100%; 
-    margin: 0 auto;
+    padding: 2rem;
+    margin: 0 auto; 
 }
 
 .projectsCards {
     display: flex;
     gap: 1rem;
     flex-wrap: wrap;
-    justify-content: center;
-    width: 100%;
-    margin: 0 auto;
+    justify-content: center; 
+    margin: auto;
 }
 
 .card {
@@ -384,9 +399,8 @@ footer {
     padding: 0.8px;
     text-align: center;
     background-color: white;
-    color: #aaa;
+    color: rgb(104, 103, 103);
     font-size: 0.9rem;
-    ;
 }
 
 .footer-container {
@@ -409,24 +423,12 @@ footer a {
     color: rgb(104, 103, 103);
     text-decoration: none;
     font-size: 1rem;
-    margin: 0 1rem;
+    margin: 0 0.5rem;
 }
 
 footer.darkMode {
     background-color: #333;
-    color: #aaa;
-}
-
-nav a.darkMode {
-    color: #ccc;
-}
-
-nav a.darkMode:hover {
-    color: #981bd1;
-}
-
-footer a {
-    color: rgb(200, 200, 200);
+    color: #cbc5c5;
 }
 
 footer a:hover {

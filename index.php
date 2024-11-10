@@ -12,7 +12,7 @@
         <p>Your one-stop destination to explore my journey as an IT student.</p>
     </div>
 
-    <h2 class="featuredTitle">Featured Projects</h2>
+    <h2 class="featuredTitle" style="font-size:30px; font-weight:bolder;">Featured Projects</h2>
     <div class="featuredProjectsContainer">
         <div class="featuredProjectCard">
             <h3>Featured Project 1</h3>
@@ -33,7 +33,7 @@
     </div>
 
     <div class="contact">
-    <h2>Contact Me</h2>
+    <h2 style="font-size:30px; font-weight:bolder;">Contact Me</h2>
     <p>If you would like to get in touch, feel free to reach out through my social media below or through this calling card!</p>
     <div class="imageContainer">
         <div class="imageColumn">
@@ -48,7 +48,7 @@
 </section>
 
     <section id="about" class="about" style="display: none;">
-        <h3 style="font-size: 30px;">About Me</h3>
+        <h3 style="font-size:30px; font-weight:bolder;">About Me</h3>
         <div class="aboutMeBox">
             <p>
                 I am an IT student at the Polytechnic University of the Philippines Sto. Tomas Campus, where I am passionate about exploring the vast field of technology and its applications. 
@@ -59,7 +59,7 @@
     </section>
 
     <section id="projects" class="projects" style="display: none;">
-    <h2>My Projects</h2>
+    <h2 style="font-size: 30px; font-weight:bolder;"> My Projects</h2>
     <div class="projectsContainer">
         <div class="projectsCards">
             <div class="card">
