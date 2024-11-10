@@ -6,17 +6,44 @@
 
 html,
 body {
-    height: 100%;
+    min-height: 100%;
     font-family: Arial, sans-serif;
-    background: linear-gradient(135deg, #ff00ff, #3300ff);
-    color: #fff;
+    background-color: #ffffff;
+    color: rgb(0, 0, 0);
     line-height: 1.6;
     display: flex;
     flex-direction: column;
+    overflow-x: hidden;
+    font-family: 'Roboto', sans-serif;
+
 }
 
 .mainContent {
     flex: 1;
+}
+
+body.darkMode {
+    color: rgb(255, 255, 255);
+    background-color: #1a1a1a;
+}
+
+header.darkMode {
+    background-color: rgb(59, 59, 59, 0.6);
+    color: #fff;
+}
+
+.logo.darkMode {
+    font-size: 2rem;
+    font-weight: bolder;
+    color: white;
+}
+
+.darkMode .toggleSlider {
+    background-color: #626161;
+}
+
+.darkMode .toggleSlider::before {
+    transform: translateX(30px);
 }
 
 header {
@@ -24,36 +51,8 @@ header {
     justify-content: space-between;
     align-items: center;
     padding: 1rem 2rem;
-    background-color: white;
-}
-
-.navLeft {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-}
-
-nav ul {
-    display: flex;
-    gap: 1rem;
-    list-style-type: none;
-    padding: 0;
-    margin: 0;
-}
-
-nav a {
-    color: rgb(104, 103, 103);
-    text-decoration: none;
-    font-size: 1rem;
-}
-
-nav a:hover {
-    color: #981bd1;
-}
-
-header.darkMode {
-    background-color: #333;
-    color: #fff;
+    background-color: rgb(205, 205, 205, 0.6);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
 }
 
 .toggleSwitch {
@@ -94,293 +93,228 @@ header.darkMode {
     transition: transform 0.3s;
 }
 
-.darkMode .toggleSlider {
-    background-color: #626161;
-}
-
-.darkMode .toggleSlider::before {
-    transform: translateX(30px);
-}
-
 h1 {
     margin-bottom: 0.5rem;
-    text-shadow: 3px 3px 5px rgba(0, 0, 0, 0.8);
-    color: #ffffff;
-}
-
-.home {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    padding: 2rem;
-}
-
-.welcome,
-.aboutMeBox,
-.imageContainer {
-    border: 2px solid #910035;
-    border-radius: 15px;
-    padding: 20px;
-    margin: 20px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-}
-
-.welcome {
-    margin-bottom: 5rem;
-    max-width: 800px;
-    width: 100%;
-    margin: 0 auto;
-}
-
-.featuredProjectsContainer {
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    margin-bottom: 5rem;
-}
-
-.featuredProjectCard {
-    margin: 1rem;
-    text-align: center;
-    background-color: rgba(236, 217, 217, 0.8);
-    border-radius: 10px;
-    padding: 1rem;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    width: 400px;
-    height: 530px;
-    color: #000000;
-    transition: transform 0.3s, background-color 0.3s;
-}
-
-.featuredProjectCard:hover {
-    transform: scale(1.05);
-    background-color: rgba(255, 182, 193, 0.8);
-}
-
-.featuredProjectCard.darkMode {
-    margin: 1rem;
-    text-align: center;
-    background-color: rgba(16, 16, 16, 0.8);
-    border-radius: 10px;
-    padding: 1rem;
-    box-shadow: 0 4px 8px rgba(255, 255, 255, 0.2);
-    color: #ccc;
-}
-
-.featuredProjectCard.darkMode:hover {
-    transform: scale(1.05);
-    background-color: rgba(255, 105, 180, 0.8);
-}
-
-.projectImage {
-    border-radius: 8px;
-    margin-bottom: 10px;
-    width: 350px;
-    height: 350px;
-}
-
-.contact {
-    font-weight: bold;
-    margin-top: -5rem;
-}
-
-.imageContainer {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    max-width: 800px;
-    width: 100%;
-    margin: 0 auto;
-}
-
-.imageColumn {
-    flex: 1;
-    margin: 10px;
-    max-width: 500px;
-}
-
-.contactImage {
-    width: 100%;
-    height: auto;
-}
-
-h2 {
-    font-size: 2rem;
-    margin-top: 2%;
-    text-align: center;
-    text-shadow: 4px 4px 6px rgba(255, 255, 255, 0.8);
+    text-shadow: 1px 1px 3px #000000cc;
+    font-family: 'Abril Fatface', sans-serif;
+    font-weight: bolder;
     color: black;
-    margin-top: 10rem;
 }
 
-h2.darkMode {
-    font-size: 2rem;
-    margin-top: 2%;
-    text-align: center;
-    text-shadow: 4px 4px 6px rgba(0, 0, 0, 0.8);
-    color: #ffffff;
-    margin-top: 10rem;
+h1.darkMode {
+    margin-bottom: 0.5rem;
+    text-shadow: 1px 1px 3px rgba(255, 255, 255, 0.8);
+    color: white;
 }
 
-p {
-    text-shadow: 4px 4px 6px rgba(255, 255, 255, 0.8);
-    color: black;
-    font-size: 15px;
-}
-
-p.darkMode {
-    text-shadow: 4px 4px 6px rgba(0, 0, 0, 0.8);
-    color: #ffffff;
-    font-size: 15px;
-}
-
+h2,
 h3 {
     text-shadow: 4px 4px 6px rgba(255, 255, 255, 0.8);
     color: black;
+    margin-top: 20px;
     font-weight: bolder;
-    font-size: 20px;
+    font-size: 30px;
 }
 
+
+h2,
 h3.darkMode {
     text-shadow: 4px 4px 6px rgba(0, 0, 0, 0.8);
-    color: #ffffff;
-    font-weight: bolder;
-    font-size: 20px;
+    color: white;
 }
 
-.aboutMeBox {
-    color: white;
-    font-weight: bold;
+h4 {
+    text-shadow: 4px 4px 6px rgba(255, 255, 255, 0.8);  
+    color: black;  
+    margin-top: 20px;
+    margin-bottom: 20px;
+    font-weight: bolder;
+    font-size: 25px;
+}
+
+h4.darkMode {
+    text-shadow: 4px 4px 6px rgba(0, 0, 0, 0.8);  
+    color: white;  
 }
 
 .logo {
     font-family: 'Abril Fatface', sans-serif;
     font-size: 2rem;
     font-weight: bolder;
-    color: #5c5c5c;
+    color: black;
 }
 
-.logo.darkMode {
-    font-size: 2rem;
-    font-weight: bolder;
+.btn {
+    width: 150px;
+    font-size: 12px;
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+    background-color: black;
+    color: white;
+    border: 1px solid black;
+}
+
+.btn:hover {
+    background-color: gray;
+    color: white;
+}
+
+body.darkMode .btn {
+    background-color: white;
+    color: black;
+    border: 1px solid white;
+}
+
+body.darkMode .btn:hover {
+    background-color: black;
+    color: white;
+}
+
+form {
+    max-width: 400px;
+    margin: 0;
+    padding: 10px;
+    text-align: left;
+    width: 100%;
+    color: black;
+}
+
+form .form-control {
+    background-color: #f9f9f9; 
+    color: black; 
+    border: 1px solid #ccc; 
+}
+
+body.darkMode form {
+    color: white; 
+}
+
+body.darkMode form .form-control {
+    background-color: #444;
+    color: white;
+    border: 1px solid #666; 
+}
+
+body.darkMode form {
+    color: white;
+}
+
+.form-container {
+    background-color: #cccacabd;
     color: #ffffff;
+    padding: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
 }
 
-.hero {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    padding: 10rem 2rem;
-    background-image: url('mainWeb/hero.gif');
-    background-size: 100% 100%;
-    background-repeat: no-repeat;
-    position: relative;
-    height: 150vh;
-}
-
-.hero h1 {
-    font-size: 3rem;
-    margin-bottom: 1rem;
-}
-
-.hero p {
-    max-width: 600px;
-    margin-bottom: 2rem;
-    font-size: 1.2rem;
+.form-container.darkMode {
+    background-color: #2d2d2dbd;
+    color: #ffffff;
+    box-shadow: 0 2px 4px rgba(255, 255, 255, 0.3);
 }
 
 .container {
-    padding: 5rem 2rem;
-    text-align: center;
-    background: linear-gradient(135deg, #ff00ff, #3300ff);
-}
-
-.container.darkMode {
-    background: linear-gradient(135deg, #5f23a3, #15035c);
-    color: #fff;
-}
-
-.projects h2 {
-    font-size: 2rem;
-    margin-bottom: 1rem;
-    margin-top: 2rem;
-}
-
-.projectsContainer {
-    display: flex;
+    display: flex;       
+    flex-direction: column; 
     justify-content: center;
-    padding: 2rem;
-}
-
-.projectsCards {
-    display: flex;
-    gap: 1rem;
-    flex-wrap: wrap;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
 }
 
 .card {
-    background-color: rgba(255, 255, 255, 0.9);
-    color: black;
-    padding: 1rem;
-    border-radius: 50%;
-    width: 300px;
-    height: 300px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
-    transition: transform 0.3s, background-color 0.3s;
-    margin: 1rem;
-}
-
-.card:hover {
-    background-color: rgba(255, 182, 193, 0.88);
-    transform: scale(1.05);
-}
-
-.card.darkMode:hover {
-    background-color: rgb(173, 28, 101);
-}
-
-.card h3 {
-    margin-bottom: 0.5rem;
-    color: #ff005c;
+    position: relative;
+    background-color: #f9f9f9;
+    max-width: 100%;
+    height: 100%;
+    color: white;
+    margin-top: 10px;
+    margin-bottom: 20px;
+    margin-left: auto; 
+    margin-right: auto; 
+    border-radius: 8px;
+    overflow: hidden;
+    transition: transform 0.3s, box-shadow 0.3s;
+    padding: 20px;
     text-align: center;
 }
 
 .card.darkMode {
-    background-color: rgba(59, 57, 57, 0.9);
-    color: #fff;
+    background-color: #515050; 
 }
 
-.card.darkMode h3 {
-    color: #ff005c;
+.card:hover {
+    transform: scale(1.10);
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.2);
 }
 
-.card.darkMode p {
-    color: #fff;
+.cardBody {
+    position: relative;
+    padding: 10px;
 }
 
-.card a {
-    text-decoration: none;
+.card .requesterID,
+.card .requesteeID,
+.card .status {
+    color: black; 
+    font-weight: bold;
+    margin: 3px 0;
+    font-size: 15px;
+}
+
+.card.darkMode .requesterID,
+.card.darkMode .requesteeID,
+.card.darkMode .status {
+    color: white;
+}
+
+.radio-option {
+    display: flex;
+    align-items: center;
+    margin-top: -20px;
+}
+
+.radio-option input[type="radio"] {
+    margin-right: 10px;
+}
+
+label,
+input {
     display: block;
-    height: 100%;
-    width: 100%;
+    margin: 8px 0;
+}
+
+body.darkMode label,
+body.darkMode .radio-option {
+    color: white;
+}
+
+body.darkMode .btn-primary {
+    background-color: white;
+    color: black;
+    border-color: white;
+}
+
+body.darkMode .btn-primary:hover {
+    background-color: black;
+    color: white;
 }
 
 footer {
+    left: 0;
+    bottom: 0;
+    width: 100%;
     padding: 0.8px;
     text-align: center;
-    background-color: white;
-    color: #aaa;
+    background-color: rgba(205, 205, 205, 0.6);
+    color: #000000;
     font-size: 0.9rem;
-    ;
+    margin-top: auto;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
 }
 
-.footer-container {
+.footerContainer {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -397,10 +331,11 @@ footer ul {
 }
 
 footer a {
-    color: rgb(104, 103, 103);
+    color: black;
     text-decoration: none;
     font-size: 1rem;
     margin: 0 1rem;
+    transition: color 0.3s;
 }
 
 footer.darkMode {
@@ -408,18 +343,14 @@ footer.darkMode {
     color: #aaa;
 }
 
-nav a.darkMode {
-    color: #ccc;
+footer.darkMode a {
+    color: #aaa;
 }
 
-nav a.darkMode:hover {
-    color: #981bd1;
-}
-
-footer a {
-    color: rgb(200, 200, 200);
+footer.darkMode a:hover {
+    color: #ffffff;
 }
 
 footer a:hover {
-    color: #000000;
+    color: #ffffff;
 }

@@ -1,90 +1,221 @@
 <?php
-    include 'header.php'; 
+include('connect.php');
+
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    $requesterID = $_POST['requesterID'];
+    $requesteeID = $_POST['requesteeID'];
+    $status = $_POST['status'];
+
+    $insertQuery = "INSERT INTO friends (requesterID, requesteeID, status) VALUES (?, ?, ?)";
+    
+    if ($stmt = mysqli_prepare($conn, $insertQuery)) {
+        mysqli_stmt_bind_param($stmt, "iis", $requesterID, $requesteeID, $status);
+
+        if (mysqli_stmt_execute($stmt)) {
+            echo "<div id='successMessage' class='alert alert-success text-center'>Friend request added successfully!</div>";
+        } else {
+            echo "<div id='errorMessage' class='alert alert-danger text-center'>Error adding friend request: " . mysqli_stmt_error($stmt) . "</div>";
+        }
+
+        mysqli_stmt_close($stmt);
+    }
+}
+
+$query = "SELECT friendID, requesterID, requesteeID, status FROM friends";
+$result = mysqli_query($conn, $query); 
 ?>
-<section class="hero">
-    <h1>Coleen's Projects</h1>
-</section>
 
-<div class="container">
-<section id="home" class="home">
-    <div class="welcome">
-        <h3 style="font-size: 30px;">Welcome to my Data Administration Project Website!</h3>
-        <p>Your one-stop destination to explore my journey as an IT student.</p>
-    </div>
 
-    <h2 class="featuredTitle">Featured Projects</h2>
-    <div class="featuredProjectsContainer">
-        <div class="featuredProjectCard">
-            <h3>Featured Project 1</h3>
-            <img src="mainWeb/project1.png" alt="Description of Project 1" class="projectImage">
-            <p>This Java project is inspired by the "Inside Out" theme, centering on the character "Anger" and designed as a Four Pics One Word game.</p>
-        </div>
-        <div class="featuredProjectCard">
-            <h3>Featured Project 2</h3>
-            <img src="mainWeb/project2.png" alt="Description of Project 2" class="projectImage">
-            <p>This recent project, developed using HTML, presents a gallery displaying a variety of images. 
-            It has interactive elements like a button for dark and light mode, and collapse and expand buttons.</p>
-        </div>
-        <div class="featuredProjectCard">
-            <h3>Featured Project 3</h3>
-            <img src="mainWeb/project3.png" alt="Description of Project 3" class="projectImage">
-            <p>This project highlights multimedia skills, featuring Photoshop-edited images showcased in class, using techniques like cartoonization and bubble-head effects.</p>
-        </div>
-    </div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Abril+Fatface&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <title>A05</title>
+    <link rel="stylesheet" href="style.css">
+   
+</head>
+<body>
 
-    <div class="contact">
-    <h2>Contact Me</h2>
-    <p>If you would like to get in touch, feel free to reach out through my social media below or through this calling card!</p>
-    <div class="imageContainer">
-        <div class="imageColumn">
-            <img src="mainWeb/isles_front.jpg" alt="Calling Card Front" class="contactImage">
+<header>
+    <div class="logo">M01</div>
+    <nav>
+        <div class="navLeft">
+            <div class="toggleSwitch" onclick="changeMode()">
+                <div class="toggleSlider">
+                    <i class="bi bi-sun" style="position: absolute; left: 6px; top: 3px; font-size: 15px; color: rgb(199, 199, 71);"></i>
+                    <i class="bi bi-moon" style="position: absolute; right: 6px; top: 3px; font-size: 15px; color: black;"></i>
+                </div>
+            </div>
         </div>
-        <div class="imageColumn">
-            <img src="mainWeb/isles_back.jpg" alt="Calling Card Back" class="contactImage">
+    </nav>
+</header>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-4 form-container">
+                <h3>Friend Request Form</h3>
+                <form method="POST" action="" class="mb-4">
+                    <div class="form-group">
+                        <label for="requesterID">Requester ID:</label>
+                        <input type="number" class="form-control" id="requesterID" name="requesterID" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="requesteeID">Requestee ID:</label>
+                        <input type="number" class="form-control" id="requesteeID" name="requesteeID" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Status:</label><br>
+                        <label class="radio-option">
+                            <input type="radio" id="friends" name="status" value="Friends"> Friends
+                        </label><br>
+                        <label class="radio-option">
+                            <input type="radio" id="pending" name="status" value="Pending"> Pending
+                        </label><br>
+                        <label class="radio-option">
+                            <input type="radio" id="decline" name="status" value="Decline"> Decline
+                        </label><br>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-block">Add Friend Request</button>
+                </form>
+            </div>
+
+        <div class="col-md-8">
+    <div class="content">
+        <div class="container-fluid mt-4">
+            <h1 class="text-center mb-4">Friend Requests</h1>
+            <div class="row justify-content-center">
+                <?php
+                if ($result && mysqli_num_rows($result) > 0) {
+                    while ($row = mysqli_fetch_assoc($result)) {
+                        ?>
+                         <div class="col-lg-4 col-md-6 col-12 mb-4">
+                            <div class="card">
+                                <div class="card-body text-center">
+                                    <img src="profilePic.png" alt="Profile Picture" class="img-fluid rounded-circle mb-3" style="width: 80px; height: 80px;">
+                                    <h4 class="cardTitle">Friend ID: <?php echo htmlspecialchars($row['friendID']); ?></h4>
+                                    <p class="requesterID">Requester ID: <?php echo htmlspecialchars($row['requesterID']); ?></p>
+                                    <p class="requesteeID">Requestee ID: <?php echo htmlspecialchars($row['requesteeID']); ?></p>
+                                    <p class="status">Status: <?php echo htmlspecialchars($row['status']); ?></p>
+                                </div>
+                            </div>
+                        </div>
+                        <?php
+                    }
+                } else {
+                    echo "<h2 class='text-center'>No friend requests found.</h2>";
+                }
+                ?>
+            </div>
         </div>
     </div>
 </div>
 
-</section>
-
-    <section id="about" class="about" style="display: none;">
-        <h3 style="font-size: 30px;">About Me</h3>
-        <div class="aboutMeBox">
-            <p>
-                I am an IT student at the Polytechnic University of the Philippines Sto. Tomas Campus, where I am passionate about exploring the vast field of technology and its applications. 
-                I strive to enhance my skills and contribute to innovative projects. My journey in IT has equipped me with problem-solving abilities and a keen interest in emerging technologies. 
-                I am eager to collaborate with like-minded individuals and make a positive impact in the tech community.
-            </p>
+<footer id="footer">
+    <div class="footerContainer text-center">
+        <div class="footer-content mb-2">
+            <span>© 2024 Isles, Inc</span>
         </div>
-    </section>
-
-    <section id="projects" class="projects" style="display: none;">
-    <h2>My Projects</h2>
-    <div class="projectsContainer">
-        <div class="projectsCards">
-            <div class="card">
-                <h3 style="margin-top:100px;">Project 1</h3>
-                <p>A05</p>
-                <a href="A05/index.php"></a>
-            </div>
-            <div class="card">
-                <h3>Project 2</h3>
-                <p>Description of Project 2</p>
-            </div>
-            <div class="card">
-                <h3>Project 3</h3>
-                <p>Description of Project 3</p>
-            </div>
-            <div class="card">
-                <h3>Project 4</h3>
-                <p>Description of Project 4</p>
-            </div>
-        </div>
+        <ul class="nav list-unstyled d-flex justify-content-center footer-content">
+            <li class="ms-3">
+                <a href="https://x.com/coleenislesss"><i class="bi bi-twitter"></i></a>
+            </li>
+            <li class="ms-3">
+                <a href="https://www.instagram.com/cln.selsi/"><i class="bi bi-instagram"></i></a>
+            </li>
+            <li class="ms-3">
+                <a href="https://www.facebook.com/coleen.isles"><i class="bi bi-facebook"></i></a>
+            </li>
+        </ul>
     </div>
-</section>
+</footer>
 
-</div>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const toggleSwitch = document.querySelector('.toggleSwitch');
+    const logo = document.querySelector('.logo');
 
-<?php
-    include 'footer.php'; 
-?>
+    const darkModeState = localStorage.getItem('darkMode');
+
+    if (darkModeState === 'enabled') {
+        document.body.classList.add('darkMode');
+        document.querySelector('header').classList.add('darkMode');
+        document.querySelector('footer').classList.add('darkMode');
+        logo.classList.add('darkMode');
+
+        const navLinks = document.querySelectorAll('nav a');
+        navLinks.forEach(link => {
+            link.classList.add('darkMode');
+        });
+
+        const cards = document.querySelectorAll('.card');
+        cards.forEach(card => {
+            card.classList.add('darkMode');
+        });
+
+        const headers = document.querySelectorAll('h1, h2, h3, h4');
+        headers.forEach(header => {
+            header.classList.add('darkMode');
+        });
+
+        const formContainer = document.querySelector('.form-container');
+        if (formContainer) {
+            formContainer.classList.add('darkMode');
+        }
+    } else {
+        document.body.classList.remove('darkMode');
+    }
+
+    toggleSwitch.addEventListener('click', function() {
+        document.body.classList.toggle('darkMode');
+        document.querySelector('header').classList.toggle('darkMode');
+        document.querySelector('footer').classList.toggle('darkMode');
+        logo.classList.toggle('darkMode');
+
+        const navLinks = document.querySelectorAll('nav a');
+        navLinks.forEach(link => {
+            link.classList.toggle('darkMode');
+        });
+
+        const cards = document.querySelectorAll('.card');
+        cards.forEach(card => {
+            card.classList.toggle('darkMode');
+        });
+
+        const headers = document.querySelectorAll('h1, h2, h3, h4');
+        headers.forEach(header => {
+            header.classList.toggle('darkMode');
+        });
+
+        const formContainer = document.querySelector('.form-container');
+        if (formContainer) {
+            formContainer.classList.toggle('darkMode');
+        }
+
+        if (document.body.classList.contains('darkMode')) {
+            localStorage.setItem('darkMode', 'enabled');
+        } else {
+            localStorage.setItem('darkMode', 'disabled');
+        }
+    });
+
+    setTimeout(function() {
+        var successMessage = document.getElementById('successMessage');
+        var errorMessage = document.getElementById('errorMessage');
+
+        if (successMessage) {
+            successMessage.style.display = 'none';
+        }
+        if (errorMessage) {
+            errorMessage.style.display = 'none';
+        }
+    }, 3000); 
+});
+    </script>
+
+</body>
+</html>
