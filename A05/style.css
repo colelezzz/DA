@@ -145,7 +145,7 @@ h3.darkMode {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    min-height: 100vh; 
+    width: 90%;
     padding: 20px; 
     flex-wrap: wrap; 
 }
@@ -159,6 +159,7 @@ h3.darkMode {
     width: 400px;
     color: white;
     margin: 20px;
+    max-width: 90%;
     border-radius: 8px;
     overflow: hidden;
     transition: transform 0.3s, box-shadow 0.3s;
@@ -171,43 +172,43 @@ h3.darkMode {
 .cardBody {
     position: relative;
     padding: 10px;
-}
 
-.cardTitle{
-    color:rgb(248, 245, 82);
+}.friendID {
+    color: rgb(248, 245, 82);
     font-weight: bolder;
     position: absolute;
-    font-size: 25px;
-    top: 12px; 
-    left: 250px;
+    font-size: 1.5em; 
+    top: 5%; 
+    left: 50%; 
+    transform: translateX(-50%);
     z-index: 1;
 }
 
 .requesterID {
-    color:rgb(174, 116, 188);
-    position: absolute;
+    color: rgb(174, 116, 188);
     font-weight: bold;
-    font-size: 18px;
-    top: 95px; 
-    left: 130px;
+    position: absolute;
+    font-size: 1.1em; 
+    top: 40%; 
+    left: 25%;
 }
 
 .requesteeID {
-    color:rgb(174, 116, 188);
-    position: absolute;
+    color: rgb(174, 116, 188);
     font-weight: bold;
-    font-size: 18px;
-    top: 115px; 
-    left: 130px;
+    position: absolute;
+    font-size: 1.1em;
+    top: 50%; 
+    left: 25%;
 }
 
 .status {
-    color:rgb(174, 116, 188);
-    position: absolute;
+    color: rgb(174, 116, 188);
     font-weight: bold;
-    font-size: 18px;
-    top: 135px; 
-    left: 130px;
+    position: absolute;
+    font-size: 1.1em;
+    top: 60%; 
+    left: 25%;
 }
 
 footer {
