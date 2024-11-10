@@ -15,6 +15,7 @@ $result = executeQuery($query);
     <link href="https://fonts.googleapis.com/css2?family=Abril+Fatface&display=swap" rel="stylesheet">
     <title>A05</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="../mainWeb/logo.png" type="image/png">
 </head>
 <body>
 <header>
