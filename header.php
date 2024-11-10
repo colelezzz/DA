@@ -102,7 +102,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
         localStorage.setItem('darkMode', 'disabled');
     }
-=
+
     document.addEventListener('visibilitychange', function() {
         if (document.visibilityState === 'visible') {
             const darkModeState = localStorage.getItem('darkMode');
