@@ -37,7 +37,7 @@ $result = mysqli_query($conn, $query);
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
     <title>M01</title>
     <link rel="stylesheet" href="style.css">
-   
+    <link rel="icon" href="../mainWeb/logo.png" type="image/png">
 </head>
 <body>
 
