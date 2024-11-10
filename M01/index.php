@@ -148,19 +148,19 @@ document.addEventListener('DOMContentLoaded', function() {
         logo.classList.add('darkMode');
 
         const navLinks = document.querySelectorAll('nav a');
-        navLinks.forEach(link => {
-            link.classList.add('darkMode');
-        });
+        for (var i = 0; i < navLinks.length; i++) {
+            navLinks[i].classList.add('darkMode');
+        }
 
         const cards = document.querySelectorAll('.card');
-        cards.forEach(card => {
-            card.classList.add('darkMode');
-        });
+        for (var i = 0; i < cards.length; i++) {
+            cards[i].classList.add('darkMode');
+        }
 
         const headers = document.querySelectorAll('h1, h2, h3, h4');
-        headers.forEach(header => {
-            header.classList.add('darkMode');
-        });
+        for (var i = 0; i < headers.length; i++) {
+            headers[i].classList.add('darkMode');
+        }
 
         const formContainer = document.querySelector('.form-container');
         if (formContainer) {
@@ -177,19 +177,19 @@ document.addEventListener('DOMContentLoaded', function() {
         logo.classList.toggle('darkMode');
 
         const navLinks = document.querySelectorAll('nav a');
-        navLinks.forEach(link => {
-            link.classList.toggle('darkMode');
-        });
+        for (var i = 0; i < navLinks.length; i++) {
+            navLinks[i].classList.toggle('darkMode');
+        }
 
         const cards = document.querySelectorAll('.card');
-        cards.forEach(card => {
-            card.classList.toggle('darkMode');
-        });
+        for (var i = 0; i < cards.length; i++) {
+            cards[i].classList.toggle('darkMode');
+        }
 
         const headers = document.querySelectorAll('h1, h2, h3, h4');
-        headers.forEach(header => {
-            header.classList.toggle('darkMode');
-        });
+        for (var i = 0; i < headers.length; i++) {
+            headers[i].classList.toggle('darkMode');
+        }
 
         const formContainer = document.querySelector('.form-container');
         if (formContainer) {
