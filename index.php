@@ -73,12 +73,19 @@
                 <a href="M01/index.php"></a>
             </div>
             <div class="card">
-                <h3>Project 3</h3>
-                <p>Description of Project 3</p>
+                <h3 style="margin-top:100px;">Activity 6</h3>
+                <p>A06</p>
+                <a href="A06/index.php"></a>
             </div>
             <div class="card">
-                <h3>Project 4</h3>
-                <p>Description of Project 4</p>
+                <h3 style="margin-top:100px;">Stay Tuned!</h3>
+                <p>🔜</p>
+                <a href="M01/index.php"></a>
+            </div>
+            <div class="card">
+                <h3 style="margin-top:100px;">Stay Tuned!</h3>
+                <p>🔜</p>
+                <a href="M01/index.php"></a>
             </div>
         </div>
     </div>
