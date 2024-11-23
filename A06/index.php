@@ -96,6 +96,9 @@ $result = mysqli_query($conn, $query);
                         <label class="radio-option">
                             <input type="radio" id="decline" name="status" value="Decline"> Decline
                         </label><br>
+                        <label class="radio-option">
+                            <input type="radio" id="decline" name="status" value="Unfriended"> Unfriended
+                        </label><br>
                     </div>
                     <button type="submit" class="btn btn-primary btn-block">Add Friend Request</button>
                 </form>
