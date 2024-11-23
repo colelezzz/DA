@@ -7,24 +7,42 @@
 html,
 body {
     height: 100%;
+    margin: 0;
+    padding: 0;
     font-family: Arial, sans-serif;
     background: #711ed0;
     color: #fff;
     line-height: 1.6;
     display: flex;
     flex-direction: column;
+    overflow-x: hidden;
 }
 
 .mainContent {
     flex: 1;
 }
-
 header {
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 1rem 2rem;
     background-color: white;
+    position: relative;
+}
+
+.logo {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.dropdown-toggle {
+    background-color: #711ed0; 
+    color: white;
+    border: none;
+}
+
+.dropdown-menu {
+    background-color: #711ed0;
 }
 
 .navLeft {
@@ -42,7 +60,7 @@ nav ul {
 }
 
 nav a {
-    color: rgb(104, 103, 103);
+    color: white;
     text-decoration: none;
     font-size: 1rem;
 }
@@ -68,6 +86,22 @@ header.darkMode {
     margin-left: 1rem;
     display: flex;
     align-items: center;
+}
+
+@media (max-width: 768px) {
+    header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .navLeft ul {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+
+    .toggleSwitch {
+        margin-top: 1rem;
+    }
 }
 
 .toggleSwitch {
@@ -131,7 +165,7 @@ h1 {
 .imageContainer {
     border: 2px solid #910035;
     border-radius: 15px;
-    padding: 20px;
+    padding:10px;
     margin: 20px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
@@ -330,17 +364,17 @@ h3.darkMode {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    align-items: center; 
-    width: 100%; 
+    align-items: center;
+    width: 100%;
     padding: 2rem;
-    margin: 0 auto; 
+    margin: 0 auto;
 }
 
 .projectsCards {
     display: flex;
     gap: 1rem;
     flex-wrap: wrap;
-    justify-content: center; 
+    justify-content: center;
     margin: auto;
 }
 
@@ -401,6 +435,8 @@ footer {
     background-color: white;
     color: rgb(104, 103, 103);
     font-size: 0.9rem;
+    position: relative;
+    bottom: 0;
 }
 
 .footer-container {

@@ -14,21 +14,29 @@
 <header>
     <div class="logo">Data Administration</div>
     <nav>
-        <div class="navLeft">
-            <ul>
-                <li><a href="#" onclick="showHome()">Home</a></li>
-                <li><a href="#" onclick="showAbout()">About</a></li>
-                <li><a href="#" onclick="showProjects()">Projects</a></li>
+    <div class="navLeft">
+    <ul>
+        <li class="dropdown">
+            <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Menu
+            </button>
+            <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="#" onclick="showHome()">Home</a></li>
+                <li><a class="dropdown-item" href="#" onclick="showAbout()">About</a></li>
+                <li><a class="dropdown-item" href="#" onclick="showProjects()">Projects</a></li>
             </ul>
-            <div class="toggleSwitch" onclick="changeMode()">
-                <div class="toggleSlider">
-                    <i class="bi bi-sun"
-                        style="position: absolute; left: 6px; top: 2px; font-size: 15px; color: rgb(199, 199, 71);"></i>
-                    <i class="bi bi-moon"
-                        style="position: absolute; right: 6px; top: 2px; font-size: 15px; color: black;"></i>
-                </div>
-            </div>
+        </li>
+    </ul>
+
+    <div class="toggleSwitch" onclick="changeMode()">
+        <div class="toggleSlider">
+            <i class="bi bi-sun"
+                style="position: absolute; left: 6px; top: 2px; font-size: 15px; color: rgb(199, 199, 71);"></i>
+            <i class="bi bi-moon"
+                style="position: absolute; right: 6px; top: 2px; font-size: 15px; color: black;"></i>
         </div>
+    </div>
+</div>
     </nav>
 </header>
 
