@@ -1,12 +1,33 @@
 <?php
 include("connect.php");
 
-$sort = isset($_GET['sort']) ? $_GET['sort'] : '';
-$order = isset($_GET['order']) ? $_GET['order'] : 'ASC';
+$filter = $_GET['filter'];
+$filterValue = $_GET['filterValue'];
+$sort = $_GET['sort'];
+$order = $_GET['order'];
+
+$values = [];
+if ($filter === 'departureAirportCode') {
+    $values = ['MBI', 'BKD', 'GEX', 'XGN', 'MDP', 'BMO', 'PLJ', 'RYO', 'IAN', 'WDA', 'TSN', 'OGS', 'YLH', 'BFL', 'PIL', 'DJE', 'LDW', 'JWA', 'GLD', 'CPU', 'NUU', 'LAP', 'TLB', 'PGU', 'KDD'];
+} elseif ($filter === 'arrivalAirportCode') {
+    $values = ['YNB', 'UKH', 'NEN', 'TTG', 'BIU', 'POF', 'AHH', '0', 'LZN', 'OSG', 'KRN', 'IRZ', 'NNI', 'HLT', 'LLE', 'WML', 'YJF', 'GEM', 'LEZ', 'PQS', 'WAO', 'XYE', 'IXD', 'CYM', 'SOZ'];
+} elseif ($filter === 'aircraftType') {
+    $values = ['Airbus A320', 'Boeing 737', 'Embraer E190'];
+}
 
 $flightsQuery = "SELECT * FROM flightlogs";
 
-if ($sort != '') {
+$filters = [];
+
+if ($filter !== '' && $filterValue !== '') {
+    $filters[] = "$filter = '$filterValue'";
+}
+
+if (!empty($filters)) {
+    $flightsQuery .= " WHERE " . implode(" AND ", $filters);
+}
+
+if ($sort !== '') {
     $flightsQuery .= " ORDER BY $sort $order";
 }
 
@@ -34,15 +55,15 @@ $flightResults = executeQuery($flightsQuery);
         }
 
         .btn {
-            background-color: #B181C6; 
+            background-color: #B181C6;
             color: white;
-            border: none;  
+            border: none;
         }
-        
+
         .btn:hover {
-            background-color: #623B73; 
+            background-color: #623B73;
             color: white;
-            border: none;  
+            border: none;
         }
     </style>
 </head>
@@ -63,7 +84,31 @@ $flightResults = executeQuery($flightsQuery);
             <div class="col">
                 <form>
                     <div class="mb-3">
-                        <label for="sort" class="form-label">Sort:</label>
+                        <label for="filter" class="form-label">Filter By:</label>
+                        <select id="filter" name="filter" class="form-select" onchange="this.form.submit()">
+                            <option value="">None</option>
+                            <option value="departureAirportCode" <?php echo ($filter === 'departureAirportCode') ? 'selected' : ''; ?>>Departure Code</option>
+                            <option value="arrivalAirportCode" <?php echo ($filter === 'arrivalAirportCode') ? 'selected' : ''; ?>>Arrival Code</option>
+                            <option value="aircraftType" <?php echo ($filter === 'aircraftType') ? 'selected' : ''; ?>>
+                                Aircraft</option>
+                        </select>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="filterValue" class="form-label">Filter Value:</label>
+                        <select id="filterValue" name="filterValue" class="form-select">
+                            <option value="">Select Value</option>
+                            <?php
+                            foreach ($values as $value) {
+                                echo "<option value=\"$value\" " . (($filterValue === $value) ? 'selected' : '') . ">$value</option>";
+                            }
+                            ?>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Apply Filter</button>
+
+                    <div class="mb-3">
+                        <label for="sort" class="form-label mt-3">Sort:</label>
                         <select id="sort" name="sort" class="form-select">
                             <option value="">None</option>
                             <option value="flightNumber" <?php echo ($sort == 'flightNumber') ? 'selected' : ''; ?>>Flight
@@ -95,11 +140,12 @@ $flightResults = executeQuery($flightsQuery);
                         <thead>
                             <tr>
                                 <th scope="col">Flight Number</th>
+                                <th scope="col">Departure Code</th>
+                                <th scope="col">Arrival Code</th>
                                 <th scope="col">Departure Date</th>
                                 <th scope="col">Arrival Date</th>
-                                <th scope="col">Flight Duration</th>
                                 <th scope="col">Passenger Count</th>
-                                <th scope="col">Airline</th>
+                                <th scope="col">Aircraft</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -109,11 +155,12 @@ $flightResults = executeQuery($flightsQuery);
                                     ?>
                                     <tr>
                                         <th scope="row"><?php echo $flightRow['flightNumber'] ?></th>
+                                        <td><?php echo $flightRow['departureAirportCode'] ?></td>
+                                        <td><?php echo $flightRow['arrivalAirportCode'] ?></td>
                                         <td><?php echo $flightRow['departureDatetime'] ?></td>
                                         <td><?php echo $flightRow['arrivalDatetime'] ?></td>
-                                        <td><?php echo $flightRow['flightDurationMinutes'] ?></td>
                                         <td><?php echo $flightRow['passengerCount'] ?></td>
-                                        <td><?php echo $flightRow['airlineName'] ?></td>
+                                        <td><?php echo $flightRow['aircraftType'] ?></td>
                                     </tr>
                                     <?php
                                 }
