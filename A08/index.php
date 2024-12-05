@@ -1,10 +1,10 @@
 <?php
 include("connect.php");
 
-$filter = $_GET['filter'];
-$filterValue = $_GET['filterValue'];
-$sort = $_GET['sort'];
-$order = $_GET['order'];
+$filter = isset($_GET['filter']) ? $_GET['filter'] : '';
+$filterValue = isset($_GET['filterValue']) ? $_GET['filterValue'] : '';
+$sort = isset($_GET['sort']) ? $_GET['sort'] : '';
+$order = isset($_GET['order']) ? $_GET['order'] : 'ASC'; 
 
 $values = [];
 if ($filter === 'departureAirportCode') {
@@ -16,11 +16,10 @@ if ($filter === 'departureAirportCode') {
 }
 
 $flightsQuery = "SELECT * FROM flightlogs";
-
 $filters = [];
 
 if ($filter !== '' && $filterValue !== '') {
-    $filters[] = "$filter = '$filterValue'";
+    $filters[] = "$filter = '$filterValue'"; 
 }
 
 if (!empty($filters)) {
@@ -33,6 +32,7 @@ if ($sort !== '') {
 
 $flightResults = executeQuery($flightsQuery);
 ?>
+
 
 <!doctype html>
 <html lang="en">
@@ -55,15 +55,15 @@ $flightResults = executeQuery($flightsQuery);
         }
 
         .btn {
-            background-color: #B181C6;
+            background-color: #B181C6; 
             color: white;
-            border: none;
+            border: none;  
         }
-
+        
         .btn:hover {
-            background-color: #623B73;
+            background-color: #623B73; 
             color: white;
-            border: none;
+            border: none;  
         }
     </style>
 </head>
@@ -83,29 +83,28 @@ $flightResults = executeQuery($flightsQuery);
         <div class="row my-5">
             <div class="col">
                 <form>
-                    <div class="mb-3">
-                        <label for="filter" class="form-label">Filter By:</label>
-                        <select id="filter" name="filter" class="form-select" onchange="this.form.submit()">
-                            <option value="">None</option>
-                            <option value="departureAirportCode" <?php echo ($filter === 'departureAirportCode') ? 'selected' : ''; ?>>Departure Code</option>
-                            <option value="arrivalAirportCode" <?php echo ($filter === 'arrivalAirportCode') ? 'selected' : ''; ?>>Arrival Code</option>
-                            <option value="aircraftType" <?php echo ($filter === 'aircraftType') ? 'selected' : ''; ?>>
-                                Aircraft</option>
-                        </select>
-                    </div>
+                <div class="mb-3">
+        <label for="filter" class="form-label">Filter By:</label>
+        <select id="filter" name="filter" class="form-select" onchange="this.form.submit()">
+            <option value="">None</option>
+            <option value="departureAirportCode" <?php echo ($filter === 'departureAirportCode') ? 'selected' : ''; ?>>Departure Code</option>
+            <option value="arrivalAirportCode" <?php echo ($filter === 'arrivalAirportCode') ? 'selected' : ''; ?>>Arrival Code</option>
+            <option value="aircraftType" <?php echo ($filter === 'aircraftType') ? 'selected' : ''; ?>>Aircraft</option>
+        </select>
+    </div>
 
-                    <div class="mb-3">
-                        <label for="filterValue" class="form-label">Filter Value:</label>
-                        <select id="filterValue" name="filterValue" class="form-select">
-                            <option value="">Select Value</option>
-                            <?php
-                            foreach ($values as $value) {
-                                echo "<option value=\"$value\" " . (($filterValue === $value) ? 'selected' : '') . ">$value</option>";
-                            }
-                            ?>
-                        </select>
-                    </div>
-                    <button type="submit" class="btn btn-primary">Apply Filter</button>
+    <div class="mb-3">
+        <label for="filterValue" class="form-label">Filter:</label>
+        <select id="filterValue" name="filterValue" class="form-select">
+            <option value="">Select</option>
+            <?php
+            foreach ($values as $value) {
+                echo "<option value=\"$value\" " . (($filterValue === $value) ? 'selected' : '') . ">$value</option>";
+            }
+            ?>
+        </select>
+    </div>
+    <button type="submit" class="btn btn-primary">FILTER</button>
 
                     <div class="mb-3">
                         <label for="sort" class="form-label mt-3">Sort:</label>
