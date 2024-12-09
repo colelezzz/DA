@@ -135,7 +135,7 @@ $flightResults = executeQuery($flightsQuery);
     <div class="container">
         <div class="row">
             <div class="col">
-                <div class="table">
+                <div class="table-responsive">
                     <table class="table table-hover">
                         <thead>
                             <tr>
